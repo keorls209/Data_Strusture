@@ -1,56 +1,43 @@
 #include "Graph.h"
 
-void Graph::addVertex(Vertex newVertex)
-{
-
-}
-bool Graph::checkVertexExistByID(int id)
-{
-	bool flag = false;
-	for (int  i = 0; i <vertices.size() ; i++)
-	{
-		if (vertices[i].getStateid() == id)
-		{
-			flag = true;
-			break;
-		}
-
-	}
-	return flag;
+void Graph::addVertex(Vertex newVertex) {
+    vertices[newVertex.getStatename()] = newVertex;
 }
 
-void Graph::updateVertex(int id, string name)
-{
+bool Graph::checkVertexExistByName(string name) {
+    return vertices.find(name) != vertices.end();
 }
 
-void Graph::deleteVertex(int id)
-{
+void Graph::updateVertex(string oldName, string newName) {
+   
 }
 
-void Graph::addEdge(int sourceID, int destinationID, int weight)
-{
+void Graph::deleteVertex(string name) {
+   
 }
 
-void Graph::updateEdge(int sourceID, int destinationID, int newWeight)
-{
+void Graph::addEdge(string sourceName, string destinationName, int weight) {
+   
 }
 
-void Graph::deleteEdge(int sourceID, int destinationID)
-{
+void Graph::updateEdge(string sourceName, string destinationName, int newWeight) {
+   
 }
 
-bool Graph::checkIfNeighbors(int sourceID, int destinationID)
-{
-	return false;
+void Graph::deleteEdge(string sourceName, string destinationName) {
+   
 }
 
-vector<int> Graph::getAllNeighbors(int id)
-{
-	return vector<int>();
+bool Graph::checkIfNeighbors(string sourceName, string destinationName) {
+   
 }
 
-void Graph::printAllNeighbors(int id)
-{
+vector<string> Graph::getAllNeighbors(string name) {
+  
+}
+
+void Graph::printAllNeighbors(string name) {
+   
 }
 
 void Graph::printGraph() {
@@ -63,10 +50,10 @@ void Graph::printGraph() {
     cout << "---------------" << endl;
 
     for (auto vertexItem : vertices) {
-        int id = vertexItem.first;
+        string name = vertexItem.first;
         Vertex vertex = vertexItem.second;
 
-        cout << "City " << id << " (" << vertex.getStatename() << "): ";
+        cout << "City " << name << " (" << vertex.getStatename() << "): ";
 
         list<Edges> edges = vertex.getEdges();
         if (edges.empty()) {
@@ -74,51 +61,36 @@ void Graph::printGraph() {
         }
         else {
             for (Edges edge : edges) {
-                cout << edge.getVertexID2() << "( Destince: " << edge.getWeight() << "km ) ";
+                cout << edge.getVertexName2() << "( Destince: " << edge.getWeight() << "km ) ";
             }
         }
         cout << endl;
     }
 }
 
-void Graph::test()
-{
+void Graph::test() {
+    // Create vertices
+    Vertex v1(1,"New York");
+    Vertex v2(2,"Los Angeles");
+    Vertex v3(3,"Chicago");
+    Vertex v4(4,"Houston");
+    Vertex v5(5,"Miami");
 
-	//just for testing
-    Vertex v1(1, "New York");
-    Vertex v2(2, "Los Angeles");
-    Vertex v3(3, "Chicago");
-    Vertex v4(4, "Houston");
-    Vertex v5(5, "Miami");
+    // Add vertices to graph
+    vertices["New York"] = v1;
+    vertices["Los Angeles"] = v2;
+    vertices["Chicago"] = v3;
+    vertices["Houston"] = v4;
+    vertices["Miami"] = v5;
 
-    
-    Edges e1(1, 2, 3945);  
-    Edges e2(1, 3, 1143);  
-    Edges e3(2, 1, 3945);  
-    Edges e4(2, 4, 2251);  
-    Edges e5(3, 1, 1143);  
-    Edges e6(3, 4, 1084);  
-    Edges e7(4, 2, 2251);  
-    Edges e8(4, 5, 1187);  
-    Edges e9(5, 4, 1187);  
-
-    
-    v1.addEdge(e1);
-    v1.addEdge(e2);
-    v2.addEdge(e3);
-    v2.addEdge(e4);
-    v3.addEdge(e5);
-    v3.addEdge(e6);
-    v4.addEdge(e7);
-    v4.addEdge(e8);
-    v5.addEdge(e9);
-
-    
-    vertices[1] = v1;
-    vertices[2] = v2;
-    vertices[3] = v3;
-    vertices[4] = v4;
-    vertices[5] = v5;
+    // Add edges
+    addEdge("New York", "Los Angeles", 3945);
+    addEdge("New York", "Chicago", 1143);
+    addEdge("Los Angeles", "New York", 3945);
+    addEdge("Los Angeles", "Houston", 2251);
+    addEdge("Chicago", "New York", 1143);
+    addEdge("Chicago", "Houston", 1084);
+    addEdge("Houston", "Los Angeles", 2251);
+    addEdge("Houston", "Miami", 1187);
+    addEdge("Miami", "Houston", 1187);
 }
-
-
