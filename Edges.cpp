@@ -1,16 +1,16 @@
 #include "Edges.h"
 
 
-Edges::Edges(int v1, int v2, int weight)
-    : VertexID1(v1), VertexID2(v2), Weight(weight) {
+Edges::Edges(string n1, string n2, int weight)
+    : vertexName1(n1), vertexName2(n2), Weight(weight) {
 }
 
-Edges::Edges() : VertexID1(0), VertexID2(0), Weight(0) {}
+Edges::Edges() : vertexName1(""), vertexName2(""), Weight(0) {}
 
 
-void Edges::setEdgesValues(int v1, int v2, int weight) {
-    VertexID1 = v1;
-    VertexID2 = v2;
+void Edges::setEdgesValues(string n1, string n2, int weight) {
+    vertexName1 = n1;
+    vertexName2 = n2;
     Weight = weight;
 }
 void Edges::setWeight(int weight) {
@@ -18,12 +18,12 @@ void Edges::setWeight(int weight) {
 }
 
 
-int Edges::getVertexID1() {
-    return VertexID1;
+string Edges::getVertexName1() {
+    return vertexName1;
 }
 
-int Edges::getVertexID2() {
-    return VertexID2;
+string Edges::getVertexName2() {
+    return vertexName2;
 }
 
 
