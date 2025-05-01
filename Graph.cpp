@@ -40,6 +40,38 @@ void Graph::printAllNeighbors(string name) {
    
 }
 
+void Graph::BFS(string name)
+{
+    list <Edges> tmpedge = vertices[name].edgeList;
+    unordered_map<string, bool> visiting_state;
+    for (const auto& pair : vertices) {
+        string name = pair.first; 
+        visiting_state.insert({ name, false });
+    }
+    queue<string> cities;
+    cities.push(name);
+    visiting_state[name] = true;
+
+    while (true) {
+        while (!tmpedge.empty()) {
+            if (visiting_state[tmpedge.front().vertexName2] == true) {
+                tmpedge.pop_front();
+                continue;
+            }
+            cities.push(tmpedge.front().vertexName2);
+            visiting_state[tmpedge.front().vertexName2] = true;
+            tmpedge.pop_front();
+        }
+        cout << cities.front() << "  ";
+        cities.pop();
+        if (!cities.empty()) {
+            tmpedge = vertices[cities.front()].edgeList;
+        }
+        else
+            break;
+    }
+}
+
 void Graph::printGraph() {
     if (vertices.empty()) {
         cout << "Graph is empty." << endl;
