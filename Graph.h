@@ -86,6 +86,7 @@ public:
      * Shows each city with its connections and distances
      */
     void printGraph();
+    void BFS(string name);
 
     /**
      * Creates a test graph with sample US cities and connections
