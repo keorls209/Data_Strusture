@@ -1,6 +1,4 @@
 #include "Graph.h"
-#include <queue>
-#include <unordered_map>
 
 void Graph::addVertex(Vertex newVertex) {
     vertices[newVertex.getStatename()] = newVertex;
@@ -41,13 +39,12 @@ vector<string> Graph::getAllNeighbors(string name) {
 void Graph::printAllNeighbors(string name) {
    
 }
-
 void Graph::BFS(string name)
 {
     list <Edges> tmpedge = vertices[name].edgeList;
     unordered_map<string, bool> visiting_state;
     for (const auto& pair : vertices) {
-        string name = pair.first; 
+        string name = pair.first;
         visiting_state.insert({ name, false });
     }
     queue<string> cities;
@@ -73,6 +70,7 @@ void Graph::BFS(string name)
             break;
     }
 }
+
 
 void Graph::printGraph() {
     if (vertices.empty()) {
@@ -102,29 +100,58 @@ void Graph::printGraph() {
     }
 }
 
-void Graph::test() {
-    // Create vertices
-    Vertex v1(1,"New York");
-    Vertex v2(2,"Los Angeles");
-    Vertex v3(3,"Chicago");
-    Vertex v4(4,"Houston");
-    Vertex v5(5,"Miami");
+void Graph::test()
+{
 
-    // Add vertices to graph
+    //just for testing
+    Vertex v1(1, "New York");
+    Vertex v2(2, "Los Angeles");
+    Vertex v3(3, "Chicago");
+    Vertex v4(4, "Houston");
+    Vertex v5(5, "Miami");
+
+
+    Edges e1("New York", "Los Angeles", 3945); //
+    Edges e2("New York", "Chicago", 1143); //
+    Edges e3("Los Angeles", "New York", 3945); //
+    Edges e4("Los Angeles", "Houston", 2251); //
+    Edges e5("Chicago", "New York", 1143); //
+    Edges e7("Houston", "Los Angeles", 2251); //
+    Edges e8("Houston", "Miami", 1187); //
+    Edges e9("Miami", "Houston", 1187); //
+    Edges e10("Houston", "New York", 1000);
+    Edges e11("New York", "Houston", 1000);
+    Edges e12("Houston", "Chicago", 1300);
+    Edges e13("Chicago", "Houston", 1300);
+    Edges e14("Miami", "New York", 900);
+    Edges e15("New York", "Miami", 900);
+
+
+
+
+    v1.addEdge(e1);
+    v1.addEdge(e2);
+    v2.addEdge(e3);
+    v2.addEdge(e4);
+    v3.addEdge(e5);
+    v4.addEdge(e7);
+    v4.addEdge(e8);
+    v5.addEdge(e9);
+    v4.addEdge(e10);
+    v1.addEdge(e11);
+    v4.addEdge(e12);
+    v3.addEdge(e13);
+    v5.addEdge(e14);
+    v1.addEdge(e15);
+
+
+
+
     vertices["New York"] = v1;
     vertices["Los Angeles"] = v2;
     vertices["Chicago"] = v3;
     vertices["Houston"] = v4;
     vertices["Miami"] = v5;
 
-    // Add edges
-    addEdge("New York", "Los Angeles", 3945);
-    addEdge("New York", "Chicago", 1143);
-    addEdge("Los Angeles", "New York", 3945);
-    addEdge("Los Angeles", "Houston", 2251);
-    addEdge("Chicago", "New York", 1143);
-    addEdge("Chicago", "Houston", 1084);
-    addEdge("Houston", "Los Angeles", 2251);
-    addEdge("Houston", "Miami", 1187);
-    addEdge("Miami", "Houston", 1187);
+    BFS("Los Angeles");
 }
