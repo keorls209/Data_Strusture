@@ -93,4 +93,5 @@ public:
      * Contains predefined vertices and edges for demonstration
      */
     void test();
+void BFS(string name);
 };
