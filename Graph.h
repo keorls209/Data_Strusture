@@ -87,6 +87,8 @@ public:
      */
     void printGraph();
     void BFS(string name);
+    void saveData(unordered_map<string, Vertex> vertices)
+
 
     /**
      * Creates a test graph with sample US cities and connections
