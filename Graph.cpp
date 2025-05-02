@@ -39,6 +39,18 @@ vector<string> Graph::getAllNeighbors(string name) {
 void Graph::printAllNeighbors(string name) {
    
 }
+void Graph::saveData(unordered_map<string, Vertex> vertices) {
+    fstream data;
+    data.open("vertex.txt", ios::out);
+    for (const auto& pair : vertices) {
+        data << pair.second.State_name << endl;
+        for (const auto& edge : pair.second.edgeList) {
+            data << edge.vertexName2 << "--" << edge.Weight << " ";
+        }
+        data << endl;
+    }
+    data.close();
+}
 void Graph::BFS(string name)
 {
     list <Edges> tmpedge = vertices[name].edgeList;
