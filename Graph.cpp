@@ -1,4 +1,8 @@
 #include "Graph.h"
+#include <queue>
+#include <unordered_map>
+#include <fstream>
+#include <string>
 
 void Graph::addVertex(Vertex newVertex) {
     vertices[newVertex.getStatename()] = newVertex;
@@ -50,6 +54,30 @@ void Graph::saveData(unordered_map<string, Vertex> vertices) {
         data << endl;
     }
     data.close();
+}
+unordered_map<string, Vertex> Graph::readData() {
+    unordered_map<string, Vertex> ver;
+    fstream data;
+    int id = 0;
+    data.open("vertex.txt", ios::in);
+    string name;
+    string na;
+    string w;
+    string toBreak;
+    while (getline(data, name)) {
+        Vertex v(++id, name);
+        toBreak = "";  
+
+        while (getline(data, na) && na != "end") {
+            if (!getline(data, w))
+                break; 
+            Edges e(name, na, stoi(w));
+            v.addEdge(e);
+        }
+
+        ver.insert(make_pair(name, v));
+    }
+    return ver;
 }
 void Graph::BFS(string name)
 {
