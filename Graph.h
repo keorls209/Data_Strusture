@@ -88,6 +88,7 @@ public:
     void printGraph();
     void BFS(string name);
     void saveData(unordered_map<string, Vertex> vertices);
+    unordered_map<string, Vertex> readData();
 
 
     /**
