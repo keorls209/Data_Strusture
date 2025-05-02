@@ -87,7 +87,7 @@ public:
      */
     void printGraph();
     void BFS(string name);
-    void saveData(unordered_map<string, Vertex> vertices)
+    void saveData(unordered_map<string, Vertex> vertices);
 
 
     /**
