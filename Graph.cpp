@@ -140,6 +140,107 @@ void Graph::printGraph() {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+void Graph::DFS(string current_city,string target_city)
+{
+    
+
+    unordered_map<string, bool> visited;
+    unordered_map<string, string> saveway ;
+    stack<string> city;
+    
+    for (const auto& pair : vertices) {
+        visited[pair.first] = false;
+    }
+  
+    city.push(current_city);
+    saveway[current_city] = "";
+   
+    bool found = false;
+
+    while (!city.empty())
+    {
+       
+        string current = city.top();
+        city.pop();
+
+        if (current == target_city)
+        {
+            found = true;
+            break;
+        }
+        
+        if (!visited[current]) 
+        {
+            visited[current] = true;
+
+           
+            auto& Edges = vertices[current].edgeList;
+            for (const auto& edge : Edges) 
+            {
+                string branch = edge.vertexName2;
+                if (!visited[branch]) {
+                    city.push(branch);
+                    saveway[branch] = current;
+
+                }
+
+            }
+           
+        }
+
+    }
+    if (found) {
+        vector<string> path;
+        for (string at = target_city; at!=""; at = saveway[at]) {
+            path.push_back(at);
+        }
+        reverse(path.begin(), path.end());
+
+        cout << "Path from " << current_city << " to  " << target_city << ": "<<endl;
+        for (const string& city : path) {
+            cout << city;
+            if (city != target_city) cout << " -> ";
+        }
+        cout << endl;
+    }
+    else {
+        cout << "No path found from  " << current_city << "  to " << target_city << "." << endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Graph::test()
 {
 
