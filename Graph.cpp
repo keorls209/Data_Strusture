@@ -3,7 +3,8 @@
 #include <unordered_map>
 #include <fstream>
 #include <string>
-
+#include <limits>
+const int INF = numeric_limits<int>::max();
 void Graph::addVertex(Vertex newVertex) {
     vertices[newVertex.getStatename()] = newVertex;
 }
@@ -221,6 +222,69 @@ void Graph::DFS(string current_city,string target_city)
 
 
 
+void Graph::dijkstra(const string startcity, const string endcity)
+{
+    if(checkVertexExistByName(startcity)==false||checkVertexExistByName(endcity)==false){
+        return;}
+    vector<int> dist(vertices.size(), INF);
+    vector <int> parent(vertices.size(), -1);
+    priority_queue <pair<int,int>, vector <pair<int,int> > ,greater<pair<int,int>>> pq;
+
+    unordered_map<string, int> city_index;
+    unordered_map<int, string> reversed_city_index;
+    int c=0;
+    for (const auto& pair : vertices) {
+        string name = pair.first;
+        city_index.insert({ name, c });
+        reversed_city_index.insert({ c, name});
+        c++;
+    }
+    int start=city_index[startcity];
+    int end=city_index[endcity];
+    dist[start]=0;
+    pq.push({0, start});
+    while (!pq.empty()) {
+        int u=pq.top().second;
+        int currDist=pq.top().first;
+        pq.pop();
+
+        if(currDist<dist[u]){
+            continue;}
+        if(u==end){
+            break;}
+
+        for(auto& edge: vertices[reversed_city_index[u]].edgeList)
+        { string name=edge.getVertexName2();
+            int v=city_index[name];   //neighbor
+            int weight= edge.getWeight();    //edge weight
+            if((dist[u]+weight)<dist[v]){
+                dist[v]=dist[u]+weight;
+                parent[v]=u;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+
+    if(dist[end]==INF){
+        cout<<"there is no path between"<<startcity<<"and"<<endcity<<endl;
+        return;
+    }
+
+    //reconstruct path
+    stack<int> pathStack;
+    int currcity=end;
+    while(currcity!=-1){
+        pathStack.push(currcity);
+        currcity=parent[currcity];
+    }
+    cout<<"Shortest path between"<<startcity<<"and"<<endcity<<"is:"<<dist[end]<<endl;
+
+    while(!pathStack.empty()){
+        cout<<reversed_city_index[pathStack.top()]<<" ";
+        pathStack.pop();
+        if(!pathStack.empty()) cout<<"--->";
+    }
+}
 
 
 

@@ -98,4 +98,5 @@ void DFS(string current_city,string target_city);
      */
     void test();
 void BFS(string name);
+    void dijkstra(string, string);
 };
