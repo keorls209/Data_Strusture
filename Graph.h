@@ -4,7 +4,8 @@
 #include <list>
 #include "Vertex.h"
 #include "Edges.h"
-
+#include "Edges.cpp"
+#include "Vertex.cpp"
 using namespace std;
 
 class Graph {
@@ -96,5 +97,5 @@ public:
      * Contains predefined vertices and edges for demonstration
      */
     void test();
-void BFS(string name);
+    bool dijkstra(string , string );
 };

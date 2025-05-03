@@ -1,5 +1,6 @@
 ﻿#include<iostream>
 #include"Graph.h"
+#include "Graph.cpp."
 #include"Vertex.h"
 #include<vector>
 #include<list>
@@ -7,11 +8,13 @@ using namespace std;
 void menu();
 int main()
 {
-	Graph g;
+	/*Graph g;
     g.test();
 	g.printGraph();
+	*/
+    void menu();
     
-  
+  return 0;
 }
 
 
