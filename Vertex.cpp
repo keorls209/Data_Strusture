@@ -2,20 +2,13 @@
 
 Vertex::Vertex()
 {
-	State_id = 0;
 	State_name = "";
 
 }
 
-Vertex::Vertex(int id, string name)
+Vertex::Vertex(string name)
 {
-	State_id = id;
 	State_name = name;
-}
-
-int Vertex::getStateid()
-{
-	return State_id;
 }
 
 string Vertex::getStatename()
@@ -24,12 +17,6 @@ string Vertex::getStatename()
 }
 void Vertex::addEdge(Edges& edge) {
 	edgeList.push_back(edge);
-}
-
-void Vertex::setID(int id)
-{
-	State_id = id;
-
 }
 
 void Vertex::setStateName(string name)
