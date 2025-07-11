@@ -1,6 +1,6 @@
-# 🚦 Mini-وصلني – Smart Graph-Based City Navigator
+# 🚦 Mini-Wasalny – Smart Graph-Based City Navigator
 
-**Mini-وصلني** is a C++ project designed to simulate a smart city navigation system. It allows users to interact with a dynamic map of cities, add/update/remove routes, visualize the network, and find the shortest path between any two cities using Dijkstra’s Algorithm — all through a user-friendly **Qt GUI interface**.
+**Mini- Wasalny** is a C++ project designed to simulate a smart city navigation system. It allows users to interact with a dynamic map of cities, add/update/remove routes, visualize the network, and find the shortest path between any two cities using Dijkstra’s Algorithm — all through a user-friendly **Qt GUI interface**.
 
 https://user-images.githubusercontent.com/your-demo-link.mp4  
 *(Demo Video)*
