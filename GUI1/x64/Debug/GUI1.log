@@ -1,0 +1,5 @@
+﻿   Qt/MSBuild: 3.4.0.1
+   Qt: 6.9.0
+  uic GUI1.ui
+  GUI1.cpp
+  GUI1.vcxproj -> E:\year two\semester 2\projects\finalllllllllllllllllllllllllllll project\GUI1\x64\Debug\GUI1.exe
